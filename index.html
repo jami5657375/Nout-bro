@@ -29,6 +29,17 @@ header{background:var(--dark);color:#fff;position:sticky;top:0;z-index:20;box-sh
 .benefits{background:var(--dark);color:#fff;border-radius:18px;padding:28px;display:grid;grid-template-columns:repeat(4,1fr);gap:18px}.benefit{padding:8px}.benefit b{color:var(--green);display:block;margin-bottom:7px}.benefit span{color:#c3c9d0;font-size:14px;line-height:1.5}
 footer{background:#080a0d;color:#bfc6ce;padding:45px 0 25px;margin-top:30px}.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1.3fr;gap:35px}.footer-logo{font-size:28px;font-weight:950;color:#fff}.footer-logo b{color:var(--green)}footer h4{color:#fff;margin:0 0 12px}footer a{display:block;margin:9px 0;color:#bfc6ce;font-size:14px}.copyright{border-top:1px solid #242a31;margin-top:30px;padding-top:18px;font-size:12px;color:#7e8792}
 .modal{display:none;position:fixed;inset:0;background:#0009;z-index:50;align-items:center;justify-content:center;padding:18px}.modal-box{background:#fff;border-radius:16px;padding:24px;width:min(480px,100%);position:relative}.close{position:absolute;right:18px;top:12px;font-size:28px;cursor:pointer}.modal-box input{width:100%;padding:13px;border:1px solid var(--line);border-radius:9px;margin:6px 0 10px}.modal-box .btn{width:100%;margin-top:8px}
+
+/* Product image zoom */
+.photo.product-photo{cursor:zoom-in}
+.photo.product-photo:hover img{transform:scale(1.03)}
+.photo.product-photo img{transition:transform .2s ease}
+.image-lightbox{display:none;position:fixed;inset:0;background:rgba(0,0,0,.88);z-index:100;align-items:center;justify-content:center;padding:25px;cursor:zoom-out}
+.image-lightbox.open{display:flex}
+.image-lightbox img{max-width:min(1100px,94vw);max-height:88vh;width:auto;height:auto;object-fit:contain;border-radius:12px;box-shadow:0 20px 70px rgba(0,0,0,.55);background:#fff}
+.lightbox-close{position:absolute;right:24px;top:14px;color:#fff;font-size:42px;line-height:1;cursor:pointer;font-weight:300}
+@media(max-width:650px){.image-lightbox{padding:12px}.image-lightbox img{max-width:96vw;max-height:82vh}.lightbox-close{right:14px;top:8px;font-size:36px}}
+
 @media(max-width:950px){.products{grid-template-columns:repeat(2,1fr)}.layout{grid-template-columns:1fr}.filter{position:static}.hero .container{grid-template-columns:1fr}.hero-art{display:none}.benefits{grid-template-columns:repeat(2,1fr)}.footer-grid{grid-template-columns:1fr 1fr}.stats-box{grid-template-columns:repeat(2,1fr)}.stat:nth-child(2){border-right:0}.stat:nth-child(-n+2){border-bottom:1px solid var(--line)}}
 @media(max-width:650px){.top{display:none}.header{height:auto;padding:12px 0;flex-wrap:wrap}.logo{font-size:25px}.search{order:3;flex-basis:100%;max-width:none}.header-actions{display:none}.nav .container{gap:15px}.nav .cat{display:none}.hero .container{min-height:390px}.hero h1{letter-spacing:-1.5px}.hero p{font-size:15px}.stats{margin-top:-18px}.products{grid-template-columns:1fr}.benefits,.footer-grid{grid-template-columns:1fr}.section{padding:40px 0}.section-head{align-items:start;flex-direction:column}.stats-box{grid-template-columns:1fr 1fr}.stat{padding:16px 8px}.stat b{font-size:21px}}
 
@@ -81,7 +92,7 @@ header{background:linear-gradient(180deg,#0b0b0b,#111)}
   <a class="cat" href="#new">☰ KATEGORIYALAR</a>
   <a href="#home">BOSH SAHIFA</a>
   <a href="#new">YANGI</a>
-  <a href="#used">ISHLATILGAN</a>
+  <a href="#new">ISHLATILGAN</a>
   <a href="#why">NIMA UCHUN NOUT BRO?</a>
   <a href="#contact">ALOQA</a>
 </div></nav>
@@ -92,7 +103,7 @@ header{background:linear-gradient(180deg,#0b0b0b,#111)}
       <div class="eyebrow">NOUT BRO • PREMIUM TECH STORE</div>
       <h1>YANGI VA ISHLATILGAN<br><span>NOUTBUKLAR</span></h1>
       <p>Gaming, ish va o‘qish uchun noutbuklar. Qurilmalar haqida to‘liq ma’lumot, tekshirilgan holat va qulay narxlar.</p>
-      <div class="buttons"><a class="btn primary" href="#new">Noutbuklarni ko‘rish</a><a class="btn outline" href="#used">Ishlatilganlar</a></div>
+      <div class="buttons"><a class="btn primary" href="#new">Noutbuklarni ko‘rish</a><a class="btn outline" href="#new">Ishlatilganlar</a></div>
     </div>
     <div class="hero-art"><div class="laptop"><div class="screen">NOUT BRO</div></div><div class="base"></div></div>
   </div>
@@ -138,13 +149,19 @@ header{background:linear-gradient(180deg,#0b0b0b,#111)}
   <div class="container">
     <div class="footer-grid">
       <div><div class="footer-logo"><img src="noutbro-logo.jpeg" alt="NOUT BRO"></div><p>Yangi va ishlatilgan noutbuklar. Gaming, ish va o‘qish uchun modellar.</p></div>
-      <div><h4>KATEGORIYALAR</h4><a href="#new" onclick="showState('Yangi')">Yangi noutbuklar</a><a href="#used" onclick="showState('Ishlatilgan')">Ishlatilgan noutbuklar</a></div>
+      <div><h4>KATEGORIYALAR</h4><a href="#new" onclick="showState('Yangi')">Yangi noutbuklar</a><a href="#new" onclick="showState('Ishlatilgan')">Ishlatilgan noutbuklar</a></div>
       <div><h4>YORDAM</h4><a href="#why">Kafolat</a><a href="#contact">Yetkazib berish</a><a href="#contact">Aloqa</a></div>
-      <div><h4>ALOQA</h4><a href="https://t.me/nout_bro" target="_blank">Telegram: @nout_bro</a><a href="tel:+998902976666">☎ +998 90 297 66 66</a><a href="mailto:noutbro6666@gmail.com">✉ noutbro6666@gmail.com</a><span>📍 Jizzax shahar, 130100</span></div>
+      <div><h4>ALOQA</h4><a href="https://t.me/noutbroo" target="_blank">Telegram: @noutbroo</a><a href="tel:+998902976666">☎ +998 90 297 66 66</a><a href="mailto:noutbro6666@gmail.com">✉ noutbro6666@gmail.com</a><a href="https://www.instagram.com/noutbroo/" target="_blank" rel="noopener">📸 Instagram: @noutbroo</a><span>📍 Jizzax shahar, 130100</span></div>
     </div>
     <div class="copyright">© 2026 NOUT BRO. Barcha huquqlar himoyalangan.</div>
   </div>
 </footer>
+
+
+<div class="image-lightbox" id="imageLightbox" onclick="closeImageLightbox()">
+  <span class="lightbox-close" onclick="closeImageLightbox()">×</span>
+  <img id="lightboxImage" src="" alt="Mahsulot rasmi" onclick="event.stopPropagation()">
+</div>
 
 <div class="modal" id="modal"><div class="modal-box">
   <span class="close" onclick="closeModal()">×</span>
@@ -213,11 +230,27 @@ function render(){
  document.getElementById("count").textContent=arr.length+" ta mahsulot";
  document.getElementById("products").innerHTML=arr.length?arr.map(p=>`
  <article class="card">
-   <div class="photo"><span class="badge ${p.state==="Ishlatilgan"?"used":""}">${p.state.toUpperCase()}</span>${p.image?`<img src="${p.image}" alt="${p.name}" style="width:100%;height:100%;object-fit:contain;padding:10px">`:`<div class="device">💻</div>`}</div>
+   <div class="photo product-photo" onclick='openImageLightbox(${JSON.stringify(p.image||"")},${JSON.stringify(p.name)})' title="Rasmni kattalashtirish"><span class="badge ${p.state==="Ishlatilgan"?"used":""}">${p.state.toUpperCase()}</span>${p.image?`<img src="${p.image}" alt="${p.name}" style="width:100%;height:100%;object-fit:contain;padding:10px">`:`<div class="device">💻</div>`}</div>
    <div class="card-body"><h3>${p.name}</h3><div class="spec">${p.spec}</div><div class="price">${money(p.price)}</div>
    <button class="buy" onclick='openModal(${JSON.stringify(p.name)})'>BATAFSIL / BUYURTMA</button></div>
  </article>`).join(""):`<div class="empty">🔎 Mahsulot topilmadi.<br><br>Qidiruv yoki filtrlarni o‘zgartirib ko‘ring.</div>`;
 }
+
+function openImageLightbox(src,name){
+  if(!src)return;
+  const box=document.getElementById("imageLightbox");
+  const img=document.getElementById("lightboxImage");
+  img.src=src; img.alt=name||"Mahsulot rasmi";
+  box.classList.add("open");
+  document.body.style.overflow="hidden";
+}
+function closeImageLightbox(){
+  document.getElementById("imageLightbox").classList.remove("open");
+  document.getElementById("lightboxImage").src="";
+  document.body.style.overflow="";
+}
+document.addEventListener("keydown",e=>{if(e.key==="Escape")closeImageLightbox()});
+
 function resetFilters(){document.getElementById("search").value="";document.getElementById("brand").value="Barchasi";document.getElementById("cpu").value="Barchasi";document.getElementById("newFilter").checked=false;document.getElementById("usedFilter").checked=false;render()}
 function showState(state){document.getElementById("newFilter").checked=state==="Yangi";document.getElementById("usedFilter").checked=state==="Ishlatilgan";render()}
 function openModal(n){document.getElementById("modalText").textContent=n;document.getElementById("modal").style.display="flex";window.orderProduct=n}
@@ -226,7 +259,7 @@ function sendOrder(){
  const n=document.getElementById("name").value.trim(),p=document.getElementById("phone").value.trim();
  if(!n||!p){alert("Ism va telefon raqamingizni kiriting.");return}
  const text=encodeURIComponent("Salom, NOUT BRO!%0A%0A"+window.orderProduct+"%0A%0AIsm: "+n+"%0ATelefon: "+p);
- window.open("https://t.me/nout_bro?text="+text,"_blank");
+ window.open("https://t.me/noutbroo?text="+text,"_blank");
  closeModal();
 }
 loadProducts();
