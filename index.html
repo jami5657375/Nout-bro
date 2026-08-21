@@ -155,16 +155,50 @@ header{background:linear-gradient(180deg,#0b0b0b,#111)}
 </div></div>
 
 <script>
-const products=[
-{name:"ASUS TUF Gaming F15",brand:"ASUS",cpu:"Intel",state:"Yangi",spec:"i5-12500H • RTX 3050 • 16GB RAM • 512GB SSD • 15.6” FHD 144Hz",price:8990000,icon:"🎮"},
-{name:"HP Victus 15",brand:"HP",cpu:"AMD",state:"Yangi",spec:"Ryzen 5 7535HS • RTX 2050 • 16GB RAM • 512GB SSD • 144Hz",price:7490000,icon:"💻"},
-{name:"Lenovo Legion 5",brand:"Lenovo",cpu:"AMD",state:"Ishlatilgan",spec:"Ryzen 5 5600H • RTX 3060 • 16GB RAM • 512GB SSD • 165Hz",price:8200000,icon:"🎮"},
-{name:"Dell Latitude 7490",brand:"Dell",cpu:"Intel",state:"Ishlatilgan",spec:"i5-8350U • Intel UHD 620 • 8GB RAM • 256GB SSD • 14”",price:3200000,icon:"💼"},
-{name:"ASUS ROG Strix G16",brand:"ASUS",cpu:"Intel",state:"Yangi",spec:"i7-13650HX • RTX 4060 • 16GB RAM • 1TB SSD • 165Hz",price:15990000,icon:"🎮"},
-{name:"Acer Aspire 5",brand:"Acer",cpu:"Intel",state:"Yangi",spec:"i5-1235U • Iris Xe • 8GB RAM • 512GB SSD",price:6290000,icon:"💻"},
-{name:"HP EliteBook 840 G6",brand:"HP",cpu:"Intel",state:"Ishlatilgan",spec:"i5-8265U • Intel UHD 620 • 8GB RAM • 256GB SSD • 14”",price:2990000,icon:"💼"},
-{name:"Lenovo ThinkPad T480",brand:"Lenovo",cpu:"Intel",state:"Ishlatilgan",spec:"i5-8350U • Intel UHD 620 • 8GB RAM • 256GB SSD",price:3100000,icon:"💼"}
-];
+const SUPABASE_URL="https://itrxcfkvboynlznxsnxm.supabase.co";
+const SUPABASE_KEY="sb_publishable_O89Oq0f1Uf1Q3Xn6YlvhLw_Ns1MSiwy";
+let products=[];
+
+async function loadProducts(){
+  try{
+    const res=await fetch(
+      SUPABASE_URL+"/rest/v1/products?select=*&order=created_at.desc",
+      {
+        headers:{
+          "apikey":SUPABASE_KEY,
+          "Authorization":"Bearer "+SUPABASE_KEY
+        }
+      }
+    );
+    if(!res.ok) throw new Error("Supabase: "+res.status);
+    const rows=await res.json();
+
+    products=rows.map(p=>({
+      id:p.id,
+      name:p.name||"Noma'lum mahsulot",
+      brand:p.brand||((p.name||"").split(" ")[0]||""),
+      cpu:(p.cpu||"").toLowerCase().includes("amd")?"AMD":"Intel",
+      state:p.state||"Yangi",
+      spec:[
+        p.cpu,
+        p.gpu,
+        p.ram,
+        p.storage,
+        p.display
+      ].filter(Boolean).join(" • "),
+      price:Number(p.price||0),
+      image:p.image_url||"",
+      description:p.description||""
+    }));
+
+    render();
+  }catch(err){
+    console.error(err);
+    document.getElementById("products").innerHTML=
+      '<div class="empty">Mahsulotlarni yuklashda xatolik yuz berdi. Sahifani yangilang.</div>';
+    document.getElementById("count").textContent="";
+  }
+}
 
 function money(n){return n.toLocaleString("uz-UZ")+" so‘m"}
 function render(){
@@ -179,7 +213,7 @@ function render(){
  document.getElementById("count").textContent=arr.length+" ta mahsulot";
  document.getElementById("products").innerHTML=arr.length?arr.map(p=>`
  <article class="card">
-   <div class="photo"><span class="badge ${p.state==="Ishlatilgan"?"used":""}">${p.state.toUpperCase()}</span><div class="device">${p.icon}</div></div>
+   <div class="photo"><span class="badge ${p.state==="Ishlatilgan"?"used":""}">${p.state.toUpperCase()}</span>${p.image?`<img src="${p.image}" alt="${p.name}" style="width:100%;height:100%;object-fit:contain;padding:10px">`:`<div class="device">💻</div>`}</div>
    <div class="card-body"><h3>${p.name}</h3><div class="spec">${p.spec}</div><div class="price">${money(p.price)}</div>
    <button class="buy" onclick='openModal(${JSON.stringify(p.name)})'>BATAFSIL / BUYURTMA</button></div>
  </article>`).join(""):`<div class="empty">🔎 Mahsulot topilmadi.<br><br>Qidiruv yoki filtrlarni o‘zgartirib ko‘ring.</div>`;
@@ -195,7 +229,7 @@ function sendOrder(){
  window.open("https://t.me/nout_bro?text="+text,"_blank");
  closeModal();
 }
-render();
+loadProducts();
 </script>
 </body>
 </html>
