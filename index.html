@@ -177,6 +177,41 @@ const SUPABASE_KEY="sb_publishable_O89Oq0f1Uf1Q3Xn6YlvhLw_Ns1MSiwy";
 let products=[];
 
 async function loadProducts(){
+  // Admin panel mahsulotlarni shu brauzerning localStorage'iga saqlaydi.
+  // Avval admin paneldagi ma'lumotni olamiz — shunda qo'shilgan barcha mahsulotlar
+  // (shu jumladan "Ishlatilgan") saytda ham darhol chiqadi.
+  try{
+    const local=localStorage.getItem("noutbro_products_v1");
+    if(local){
+      const rows=JSON.parse(local);
+      if(Array.isArray(rows) && rows.length){
+        products=rows.map(p=>({
+          id:p.id,
+          name:p.name||"Noma'lum mahsulot",
+          brand:p.brand||((p.name||"").split(" ")[0]||""),
+          cpu:(p.cpu||"").toLowerCase().includes("amd")?"AMD":"Intel",
+          state:(p.state==="Ishlatilgan"||String(p.state||"").toLowerCase()==="ishlatilgan")?"Ishlatilgan":"Yangi",
+          spec:[
+            p.cpu,
+            p.gpu,
+            p.ram,
+            p.ssd,
+            p.screen,
+            p.os
+          ].filter(Boolean).join(" • "),
+          price:Number(p.price||0),
+          image:p.image||"",
+          description:p.desc||""
+        }));
+        render();
+        return;
+      }
+    }
+  }catch(err){
+    console.warn("Local products error:",err);
+  }
+
+  // Agar admin ma'lumotlari bo'lmasa, Supabase'dan zaxira sifatida o'qiymiz.
   try{
     const res=await fetch(
       SUPABASE_URL+"/rest/v1/products?select=*&order=created_at.desc",
@@ -195,17 +230,19 @@ async function loadProducts(){
       name:p.name||"Noma'lum mahsulot",
       brand:p.brand||((p.name||"").split(" ")[0]||""),
       cpu:(p.cpu||"").toLowerCase().includes("amd")?"AMD":"Intel",
-      state:p.state||"Yangi",
+      state:(p.state==="Ishlatilgan"||String(p.state||"").toLowerCase()==="ishlatilgan")?"Ishlatilgan":"Yangi",
       spec:[
         p.cpu,
         p.gpu,
         p.ram,
-        p.storage,
-        p.display
+        p.ram ? "" : "",
+        p.ssd||p.storage,
+        p.screen||p.display,
+        p.os
       ].filter(Boolean).join(" • "),
       price:Number(p.price||0),
-      image:p.image_url||"",
-      description:p.description||""
+      image:p.image_url||p.image||"",
+      description:p.description||p.desc||""
     }));
 
     render();
@@ -216,6 +253,11 @@ async function loadProducts(){
     document.getElementById("count").textContent="";
   }
 }
+
+// Admin panelda mahsulot o'zgartirilsa, ochiq sayt ham yangilanadi.
+window.addEventListener("storage",e=>{
+  if(e.key==="noutbro_products_v1") loadProducts();
+});
 
 function money(n){return n.toLocaleString("uz-UZ")+" so‘m"}
 function render(){
