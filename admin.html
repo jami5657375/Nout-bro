@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="uz">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>NOUT BRO — Admin Panel</title>
+<style>
+:root{--bg:#090b0f;--panel:#11151b;--panel2:#171c23;--gold:#ffc94a;--red:#ef332d;--text:#f5f7fa;--muted:#9ba5b2;--line:#2a313b;--green:#8eea55}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 85% 0,#351313 0,#090b0f 35%);color:var(--text);font-family:Inter,Arial,sans-serif}
+button,input,select,textarea{font:inherit}.wrap{width:min(1400px,94%);margin:auto}.top{height:74px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between}.brand{display:flex;align-items:center;gap:12px;font-weight:950;font-size:24px}.brand img{width:48px;height:48px;object-fit:contain;border-radius:12px;background:#fff}.brand b{color:var(--gold)}.top-right{display:flex;gap:10px;align-items:center}.pill{border:1px solid var(--line);padding:9px 12px;border-radius:10px;color:var(--muted);font-size:13px}
+.layout{display:grid;grid-template-columns:250px 1fr;gap:20px;padding:22px 0}.side{background:rgba(17,21,27,.94);border:1px solid var(--line);border-radius:16px;padding:14px;height:max-content;position:sticky;top:18px}.side button{width:100%;text-align:left;background:transparent;color:#dce2e9;border:0;padding:13px;border-radius:10px;cursor:pointer}.side button.active,.side button:hover{background:linear-gradient(90deg,#3a1b18,#21171a);color:#fff}.danger{color:#ff807b!important}.main{min-width:0}.title{display:flex;justify-content:space-between;align-items:end;gap:15px;margin-bottom:18px}.title h1{margin:0;font-size:32px}.title p{margin:6px 0 0;color:var(--muted)}.btn{border:0;border-radius:10px;padding:12px 16px;font-weight:900;cursor:pointer}.primary{background:linear-gradient(135deg,var(--gold),#ff9e22);color:#15100a}.dark{background:#1b2027;color:#fff;border:1px solid var(--line)}.red{background:#7e2420;color:#fff}.cards{display:grid;grid-template-columns:repeat(4,1fr);gap:13px;margin-bottom:18px}.metric{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:17px}.metric span{color:var(--muted);font-size:12px}.metric b{display:block;font-size:25px;margin-top:7px}.panel{background:rgba(17,21,27,.96);border:1px solid var(--line);border-radius:16px;padding:20px;margin-bottom:18px}.panel h2{margin:0 0 16px;font-size:20px}.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}.field label{display:block;color:#cbd2da;font-size:13px;font-weight:800;margin-bottom:7px}.field input,.field select,.field textarea{width:100%;background:#0b0e13;color:#fff;border:1px solid #343c47;border-radius:9px;padding:12px;outline:0}.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--gold)}textarea{min-height:100px;resize:vertical}.full{grid-column:1/-1}.checks{display:flex;gap:18px;flex-wrap:wrap}.checks label{display:flex;align-items:center;gap:8px}.upload{border:1px dashed #47515d;border-radius:12px;padding:18px;text-align:center;color:var(--muted);cursor:pointer}.preview{display:none;width:100%;max-height:190px;object-fit:contain;background:#0a0c10;border-radius:10px;margin-top:10px}.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:17px}.table-wrap{overflow:auto}.toolbar{display:flex;gap:10px;justify-content:space-between;flex-wrap:wrap;margin-bottom:14px}.toolbar input{min-width:250px;background:#0b0e13;color:#fff;border:1px solid var(--line);border-radius:9px;padding:11px}.table{width:100%;border-collapse:collapse;min-width:760px}.table th,.table td{padding:12px;border-bottom:1px solid var(--line);text-align:left;font-size:13px}.table th{color:var(--muted);font-size:11px;text-transform:uppercase}.thumb{width:58px;height:42px;object-fit:contain;background:#fff;border-radius:7px}.status{padding:5px 8px;border-radius:20px;font-size:11px;font-weight:900}.new{background:#2e461e;color:#b9ff8e}.used{background:#263d62;color:#9dc6ff}.toast{position:fixed;right:20px;bottom:20px;background:#152116;border:1px solid #496a48;color:#d9ffd2;padding:13px 16px;border-radius:10px;display:none;z-index:9}.login{position:fixed;inset:0;background:#07090c;display:flex;align-items:center;justify-content:center;padding:20px;z-index:50}.loginbox{width:min(420px,100%);background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:28px}.loginbox img{width:80px;height:80px;object-fit:contain;background:#fff;border-radius:15px;display:block;margin:0 auto 15px}.loginbox h2{text-align:center;margin:0 0 7px}.loginbox p{text-align:center;color:var(--muted);font-size:13px;margin-bottom:20px}.loginbox input{width:100%;background:#0b0e13;color:#fff;border:1px solid var(--line);border-radius:9px;padding:13px;margin-bottom:10px}.note{font-size:12px;color:#aab2bc;line-height:1.5;margin-top:12px}
+@media(max-width:950px){.layout{grid-template-columns:1fr}.side{position:static}.cards{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:600px){.top{height:auto;padding:12px 0;gap:10px;align-items:flex-start}.top-right{display:none}.grid{grid-template-columns:1fr}.cards{grid-template-columns:1fr 1fr}.title{align-items:flex-start;flex-direction:column}.panel{padding:15px}}
+</style>
+</head>
+<body>
+
+<div id="login" class="login">
+  <div class="loginbox">
+    <img src="noutbro-logo.jpeg" alt="NOUT BRO">
+    <h2>NOUT BRO Admin</h2>
+    <p>Mahsulotlarni boshqarish paneli</p>
+    <input id="pass" type="password" placeholder="Admin paroli">
+    <button class="btn primary" style="width:100%" onclick="login()">Kirish</button>
+    <div class="note">Bu GitHub Pages uchun brauzer ichidagi admin panel. Haqiqiy xavfsiz ko‘p foydalanuvchili admin uchun server/baza ulash kerak.</div>
+  </div>
+</div>
+
+<header class="top wrap">
+  <div class="brand"><img src="noutbro-logo.jpeg"><span>NOUT <b>BRO</b> ADMIN</span></div>
+  <div class="top-right"><span class="pill">Jizzax • 130100</span><button class="btn dark" onclick="logout()">Chiqish</button></div>
+</header>
+
+<div class="wrap layout">
+  <aside class="side">
+    <button class="active" onclick="show('dashboard',this)">📊 Dashboard</button>
+    <button onclick="show('products',this)">💻 Tovarlar</button>
+    <button onclick="show('add',this)">➕ Tovar qo‘shish</button>
+    <button onclick="exportData()">⬇ Ma’lumotni yuklab olish</button>
+    <button onclick="document.getElementById('import').click()">⬆ Ma’lumotni yuklash</button>
+    <button class="danger" onclick="clearProducts()">🗑 Mahsulotlarni tozalash</button>
+  </aside>
+
+  <main class="main">
+    <section id="dashboard">
+      <div class="title"><div><h1>Dashboard</h1><p>NOUT BRO mahsulotlar holati.</p></div><button class="btn primary" onclick="show('add')">+ Yangi tovar</button></div>
+      <div class="cards">
+        <div class="metric"><span>Jami mahsulot</span><b id="mTotal">0</b></div>
+        <div class="metric"><span>Yangi</span><b id="mNew">0</b></div>
+        <div class="metric"><span>Ishlatilgan</span><b id="mUsed">0</b></div>
+        <div class="metric"><span>Omborda</span><b id="mStock">0</b></div>
+      </div>
+      <div class="panel"><h2>Tezkor boshqaruv</h2><div class="actions">
+        <button class="btn primary" onclick="show('add')">➕ Tovar qo‘shish</button>
+        <button class="btn dark" onclick="show('products')">💻 Tovarlarni ko‘rish</button>
+        <button class="btn dark" onclick="exportData()">⬇ JSON backup</button>
+      </div></div>
+    </section>
+
+    <section id="products" style="display:none">
+      <div class="title"><div><h1>Tovarlar</h1><p>Mahsulotlarni qidiring, tahrirlang yoki o‘chiring.</p></div></div>
+      <div class="panel"><div class="toolbar"><input id="tableSearch" placeholder="Nomi, SKU yoki brend..." oninput="drawTable()"><button class="btn primary" onclick="show('add')">+ Tovar qo‘shish</button></div>
+      <div class="table-wrap"><table class="table"><thead><tr><th>Rasm</th><th>Mahsulot</th><th>Holat</th><th>Narx</th><th>Qoldiq</th><th>Amal</th></tr></thead><tbody id="tbody"></tbody></table></div></div>
+    </section>
+
+    <section id="add" style="display:none">
+      <div class="title"><div><h1 id="formTitle">Yangi tovar qo‘shish</h1><p>Mahsulot kartasini to‘liq to‘ldiring.</p></div></div>
+      <div class="panel">
+        <h2>Asosiy ma’lumotlar</h2>
+        <div class="grid">
+          <div class="field"><label>Mahsulot nomi *</label><input id="name" placeholder="Masalan: ASUS TUF Gaming F15"></div>
+          <div class="field"><label>SKU / kod</label><input id="sku" placeholder="NB-0001"></div>
+          <div class="field"><label>Brend *</label><input id="brand" placeholder="ASUS"></div>
+          <div class="field"><label>Holati *</label><select id="state"><option>Yangi</option><option>Ishlatilgan</option></select></div>
+          <div class="field"><label>Narxi (so‘m) *</label><input id="price" type="number" placeholder="8990000"></div>
+          <div class="field"><label>Ombordagi soni</label><input id="stock" type="number" value="1" min="0"></div>
+          <div class="field full"><label>Qisqa tavsif</label><textarea id="desc" placeholder="Mahsulot haqida qisqa ma’lumot..."></textarea></div>
+        </div>
+      </div>
+      <div class="panel"><h2>Texnik xususiyatlar</h2><div class="grid">
+        <div class="field"><label>CPU</label><input id="cpu" placeholder="Intel Core i5-12500H"></div>
+        <div class="field"><label>GPU</label><input id="gpu" placeholder="RTX 3050 4GB"></div>
+        <div class="field"><label>RAM</label><input id="ram" placeholder="16GB DDR5"></div>
+        <div class="field"><label>SSD</label><input id="ssd" placeholder="512GB NVMe"></div>
+        <div class="field"><label>Ekran</label><input id="screen" placeholder="15.6 FHD 144Hz"></div>
+        <div class="field"><label>Operatsion tizim</label><input id="os" placeholder="Windows 11"></div>
+        <div class="field full"><label>Qo‘shimcha xususiyatlar</label><input id="extra" placeholder="RGB, Wi‑Fi 6, kamera, Bluetooth..."></div>
+      </div></div>
+      <div class="panel"><h2>Mahsulot rasmi</h2>
+        <label class="upload" for="image">📷 Rasm tanlash<br><small>JPG/PNG/WebP</small><input id="image" type="file" accept="image/*" style="display:none" onchange="previewImage(event)"></label>
+        <img id="preview" class="preview">
+      </div>
+      <div class="actions"><button class="btn primary" onclick="saveProduct()">💾 Saqlash</button><button class="btn dark" onclick="resetForm()">Bekor qilish</button></div>
+    </section>
+  </main>
+</div>
+
+<input id="import" type="file" accept=".json" style="display:none" onchange="importData(event)">
+<div id="toast" class="toast"></div>
+
+<script>
+const KEY="noutbro_products_v1", PASSKEY="noutbro_admin_password_v1";
+let products=JSON.parse(localStorage.getItem(KEY)||"[]"), editing=null, imageData="";
+
+function init(){
+  if(!localStorage.getItem(PASSKEY)){ localStorage.setItem(PASSKEY,""); }
+  if(localStorage.getItem("noutbro_admin_session")!=="1") document.getElementById("login").style.display="flex"; else document.getElementById("login").style.display="none";
+  updateMetrics(); drawTable();
+}
+function login(){
+  const p=document.getElementById("pass").value;
+  let saved=localStorage.getItem(PASSKEY);
+  if(saved===""){ if(!p){alert("Birinchi kirishda yangi admin parolini kiriting.");return} localStorage.setItem(PASSKEY,p); saved=p; }
+  if(p===saved){localStorage.setItem("noutbro_admin_session","1");document.getElementById("login").style.display="none";toast("Admin panelga kirildi");}
+  else alert("Parol noto‘g‘ri.");
+}
+function logout(){localStorage.removeItem("noutbro_admin_session");location.reload()}
+function show(id,btn){
+  ["dashboard","products","add"].forEach(x=>document.getElementById(x).style.display=x===id?"block":"none");
+  if(btn){document.querySelectorAll(".side button").forEach(b=>b.classList.remove("active"));btn.classList.add("active")}
+  if(id==="products") drawTable();
+  if(id==="dashboard") updateMetrics();
+}
+function val(id){return document.getElementById(id).value.trim()}
+function saveProduct(){
+  const p={id:editing||Date.now().toString(),name:val("name"),sku:val("sku"),brand:val("brand"),state:val("state"),price:Number(val("price")||0),stock:Number(val("stock")||0),desc:val("desc"),cpu:val("cpu"),gpu:val("gpu"),ram:val("ram"),ssd:val("ssd"),screen:val("screen"),os:val("os"),extra:val("extra"),image:imageData||""};
+  if(!p.name||!p.brand||!p.price){alert("Nom, brend va narxni kiriting.");return}
+  if(editing){products=products.map(x=>x.id===editing?p:x)}else products.unshift(p);
+  persist();toast(editing?"Tovar yangilandi":"Tovar qo‘shildi");resetForm();show("products");
+}
+function editProduct(id){
+  const p=products.find(x=>x.id===id);if(!p)return;editing=id;
+  ["name","sku","brand","state","price","stock","desc","cpu","gpu","ram","ssd","screen","os","extra"].forEach(k=>document.getElementById(k).value=p[k]??"");
+  imageData=p.image||"";const pr=document.getElementById("preview");if(imageData){pr.src=imageData;pr.style.display="block"}else pr.style.display="none";
+  document.getElementById("formTitle").textContent="Tovarni tahrirlash";show("add");
+}
+function delProduct(id){if(confirm("Bu mahsulot o‘chirilsinmi?")){products=products.filter(x=>x.id!==id);persist();drawTable();updateMetrics();toast("Tovar o‘chirildi")}}
+function resetForm(){editing=null;imageData="";document.getElementById("formTitle").textContent="Yangi tovar qo‘shish";["name","sku","brand","price","stock","desc","cpu","gpu","ram","ssd","screen","os","extra"].forEach(k=>document.getElementById(k).value="");document.getElementById("state").value="Yangi";document.getElementById("stock").value="1";document.getElementById("preview").style.display="none"}
+function previewImage(e){const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{imageData=r.result;const p=document.getElementById("preview");p.src=imageData;p.style.display="block"};r.readAsDataURL(f)}
+function drawTable(){
+ const q=(document.getElementById("tableSearch")?.value||"").toLowerCase();
+ const arr=products.filter(p=>(p.name+" "+p.sku+" "+p.brand).toLowerCase().includes(q));
+ document.getElementById("tbody").innerHTML=arr.map(p=>`<tr>
+ <td>${p.image?`<img class="thumb" src="${p.image}">`:"—"}</td><td><b>${esc(p.name)}</b><br><small>${esc(p.brand)} ${p.sku?"• "+esc(p.sku):""}</small></td>
+ <td><span class="status ${p.state==="Yangi"?"new":"used"}">${p.state}</span></td><td>${money(p.price)}</td><td>${p.stock}</td>
+ <td><button class="btn dark" onclick="editProduct('${p.id}')">Tahrir</button> <button class="btn red" onclick="delProduct('${p.id}')">O‘chirish</button></td></tr>`).join("")||`<tr><td colspan="6" style="text-align:center;color:#9ba5b2;padding:35px">Mahsulotlar yo‘q.</td></tr>`;
+}
+function updateMetrics(){document.getElementById("mTotal").textContent=products.length;document.getElementById("mNew").textContent=products.filter(p=>p.state==="Yangi").length;document.getElementById("mUsed").textContent=products.filter(p=>p.state==="Ishlatilgan").length;document.getElementById("mStock").textContent=products.reduce((a,p)=>a+Number(p.stock||0),0)}
+function persist(){localStorage.setItem(KEY,JSON.stringify(products));updateMetrics();drawTable()}
+function exportData(){const b=new Blob([JSON.stringify(products,null,2)],{type:"application/json"});const a=document.createElement("a");a.href=URL.createObjectURL(b);a.download="noutbro-products.json";a.click()}
+function importData(e){const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{try{products=JSON.parse(r.result);persist();toast("Ma’lumotlar yuklandi")}catch{alert("JSON fayl noto‘g‘ri.")}};r.readAsText(f)}
+function clearProducts(){if(confirm("Barcha mahsulotlar o‘chirilsinmi?")){products=[];persist();toast("Barcha mahsulotlar o‘chirildi")}}
+function money(n){return Number(n||0).toLocaleString("uz-UZ")+" so‘m"}
+function esc(s){return String(s||"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[m]))}
+function toast(s){const t=document.getElementById("toast");t.textContent=s;t.style.display="block";setTimeout(()=>t.style.display="none",2200)}
+init();
+</script>
+</body>
+</html>

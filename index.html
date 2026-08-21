@@ -3,95 +3,199 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="NOUT BRO — yangi va ishlatilgan noutbuklar. O'zbekistonda noutbuklar, gaming noutbuklar va biznes noutbuklar.">
+<meta name="keywords" content="noutbuk, noutbro, yangi noutbuk, ishlatilgan noutbuk, gaming noutbuk, Jizzax, O'zbekiston">
+<meta name="theme-color" content="#0b0d10">
+<meta property="og:title" content="NOUT BRO — Yangi va ishlatilgan noutbuklar">
+<meta property="og:description" content="Jizzaxdagi NOUT BRO — yangi va ishlatilgan noutbuklar.">
+<meta property="og:url" content="https://noutbro.uz/">
+<meta property="og:type" content="website">
+
 <title>NOUT BRO — Yangi va ishlatilgan noutbuklar</title>
 <style>
-:root{--green:#9cff00;--black:#080808;--gray:#f4f5f6;--text:#151515}
-*{box-sizing:border-box}body{margin:0;font-family:Arial,Helvetica,sans-serif;color:var(--text);background:#fff}
-.top{background:#080808;color:#fff;padding:10px 5%;display:flex;justify-content:space-between;font-size:13px}
-header{background:#080808;color:#fff;padding:18px 5%;display:flex;align-items:center;gap:30px}
-.logo{font-size:32px;font-weight:900;white-space:nowrap}.logo span{color:var(--green)}
-.search{flex:1;max-width:650px;display:flex;background:#fff;border-radius:8px;overflow:hidden}
-.search input{flex:1;padding:14px;border:0;outline:0;font-size:15px}.search button{border:0;background:#fff;font-size:20px;padding:0 18px}
-nav{display:flex;gap:28px;padding:14px 5%;border-bottom:1px solid #ddd;align-items:center;overflow:auto;white-space:nowrap}
-nav a{color:#111;text-decoration:none;font-weight:700;font-size:14px}.cat{background:var(--green);padding:12px 20px;border-radius:5px}
-.hero{background:linear-gradient(110deg,#090909,#181818);color:#fff;padding:55px 7%;display:flex;align-items:center;justify-content:space-between;min-height:350px}
-.hero h1{font-size:48px;line-height:1;margin:0 0 15px}.hero h1 span{color:var(--green)}.hero p{font-size:18px;color:#ddd}
-.btn{display:inline-block;padding:14px 22px;border-radius:5px;text-decoration:none;font-weight:800;margin:8px 8px 0 0;cursor:pointer;border:0}.primary{background:var(--green);color:#111}.dark{background:#111;color:#fff;border:1px solid #777}
-.hero-laptop{font-size:130px;filter:drop-shadow(0 0 35px #7cff00);transform:rotate(-5deg)}
-.brands{margin:-30px 5% 35px;background:#fff;border-radius:14px;padding:20px;box-shadow:0 6px 25px #0002;display:flex;justify-content:space-around;gap:15px;flex-wrap:wrap}.brand{font-weight:800;font-size:18px;text-align:center}.brand small{display:block;color:#888;font-weight:400;margin-top:5px}
-.wrap{padding:0 5% 50px}.section-title{display:flex;justify-content:space-between;align-items:center;margin:28px 0 18px}.section-title h2{margin:0}
-.layout{display:grid;grid-template-columns:230px 1fr;gap:25px}.filter{border:1px solid #ddd;border-radius:12px;padding:18px;height:max-content}.filter h3{margin-top:0}.filter label{display:block;margin:12px 0}.filter select,.filter input{width:100%;padding:10px;border:1px solid #ddd;border-radius:7px}
-.products{display:grid;grid-template-columns:repeat(4,1fr);gap:15px}.card{border:1px solid #ddd;border-radius:12px;padding:12px;position:relative;background:#fff;transition:.2s}.card:hover{transform:translateY(-3px);box-shadow:0 8px 20px #0001}.card img{width:100%;height:155px;object-fit:contain;background:#f5f5f5;border-radius:8px}.badge{position:absolute;top:20px;left:20px;background:var(--green);padding:5px 8px;border-radius:4px;font-size:11px;font-weight:800}.used{background:#1565d8;color:#fff}.card h3{font-size:16px;margin:12px 0 7px}.spec{font-size:12px;color:#555;line-height:1.5}.price{font-size:18px;font-weight:900;margin:10px 0}.buy{width:100%;background:#090909;color:#fff;padding:11px;border:0;border-radius:6px;font-weight:800;cursor:pointer}.benefits{background:#0a0a0a;color:#fff;border-radius:12px;padding:25px;display:grid;grid-template-columns:repeat(4,1fr);gap:20px}.benefit strong{display:block;color:var(--green);margin-bottom:6px}
-footer{background:#0a0a0a;color:#ddd;padding:40px 5%;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:30px}.footer-logo{font-size:28px;font-weight:900;color:#fff}.footer-logo span{color:var(--green)}footer a{display:block;color:#bbb;text-decoration:none;margin:8px 0}
-.modal{display:none;position:fixed;inset:0;background:#0008;z-index:5;align-items:center;justify-content:center}.modal-box{background:#fff;border-radius:15px;padding:25px;width:min(500px,90%)}.close{float:right;font-size:25px;cursor:pointer}
-@media(max-width:900px){.products{grid-template-columns:repeat(2,1fr)}.layout{grid-template-columns:1fr}.filter{display:none}.benefits{grid-template-columns:repeat(2,1fr)}footer{grid-template-columns:1fr 1fr}.hero-laptop{font-size:80px}}
-@media(max-width:600px){.top{display:none}header{flex-wrap:wrap}.logo{font-size:26px}.search{order:3;flex-basis:100%}.hero{padding:35px 5%}.hero h1{font-size:34px}.hero-laptop{display:none}.products{grid-template-columns:1fr}.benefits,footer{grid-template-columns:1fr}.brands{margin-top:-15px}}
+:root{--bg:#f5f7fa;--dark:#0b0d10;--dark2:#15191f;--green:#b7ff00;--text:#11151a;--muted:#68717d;--line:#e3e7ec;--white:#fff}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:Inter,Arial,Helvetica,sans-serif;color:var(--text);background:var(--bg)}
+a{text-decoration:none;color:inherit}.container{width:min(1200px,92%);margin:auto}
+.top{background:#07090b;color:#cfd5dc;font-size:13px}.top .container{height:38px;display:flex;align-items:center;justify-content:space-between}
+header{background:var(--dark);color:#fff;position:sticky;top:0;z-index:20;box-shadow:0 4px 18px #0003}
+.header{height:76px;display:flex;align-items:center;gap:22px}.logo{font-size:28px;font-weight:950;letter-spacing:-1.2px;white-space:nowrap}.logo b{color:var(--green)}
+.search{flex:1;max-width:600px;display:flex;background:#fff;border-radius:11px;overflow:hidden;height:46px}.search input{width:100%;border:0;outline:0;padding:0 16px;font-size:15px}.search button{width:52px;border:0;background:var(--green);font-size:20px;cursor:pointer}
+.header-actions{display:flex;gap:12px;align-items:center}.header-btn{border:1px solid #343a42;background:#181c22;color:#fff;border-radius:10px;padding:11px 13px;font-weight:700}
+.nav{background:#fff;border-bottom:1px solid var(--line)}.nav .container{display:flex;align-items:center;gap:25px;min-height:48px;overflow:auto;white-space:nowrap}.nav a{font-size:14px;font-weight:800}.nav .cat{background:var(--green);padding:10px 15px;border-radius:8px}
+.hero{background:radial-gradient(circle at 80% 30%,#26303b 0,#12161b 34%,#080a0d 72%);color:#fff;overflow:hidden}.hero .container{min-height:440px;display:grid;grid-template-columns:1.15fr .85fr;align-items:center;gap:30px}.eyebrow{color:var(--green);font-weight:900;letter-spacing:1.4px;font-size:13px}.hero h1{font-size:clamp(40px,5.5vw,70px);line-height:.98;letter-spacing:-2.5px;margin:12px 0 18px}.hero h1 span{color:var(--green)}.hero p{font-size:18px;line-height:1.6;color:#cbd1d8;max-width:650px}.buttons{display:flex;gap:10px;flex-wrap:wrap;margin-top:25px}.btn{border:0;border-radius:10px;padding:14px 18px;font-weight:900;cursor:pointer;display:inline-block}.primary{background:var(--green);color:#0b0d10}.outline{background:transparent;color:#fff;border:1px solid #68717d}
+.hero-art{position:relative;height:310px;display:flex;align-items:center;justify-content:center}.laptop{width:300px;height:190px;background:linear-gradient(145deg,#303841,#0d1014);border:8px solid #555d67;border-radius:15px 15px 8px 8px;transform:perspective(600px) rotateY(-12deg) rotateX(4deg);box-shadow:0 25px 70px #000}.screen{margin:13px;height:150px;border-radius:5px;background:linear-gradient(135deg,#18221b,#7ba500 50%,#dfff9a);display:flex;align-items:center;justify-content:center;color:#111;font-size:28px;font-weight:950}.base{position:absolute;width:355px;height:24px;background:#555d67;border-radius:50%;bottom:44px;box-shadow:0 18px 25px #0008}
+.stats{margin-top:-35px;position:relative;z-index:3}.stats-box{background:#fff;border-radius:16px;box-shadow:0 12px 35px #10182018;display:grid;grid-template-columns:repeat(4,1fr);overflow:hidden}.stat{padding:22px;text-align:center;border-right:1px solid var(--line)}.stat:last-child{border:0}.stat b{display:block;font-size:25px}.stat span{color:var(--muted);font-size:13px}
+.section{padding:55px 0}.section-head{display:flex;align-items:end;justify-content:space-between;gap:15px;margin-bottom:22px}.section-head h2{font-size:30px;margin:0}.section-head p{color:var(--muted);margin:7px 0 0}.layout{display:grid;grid-template-columns:235px 1fr;gap:22px}.filter{background:#fff;border:1px solid var(--line);border-radius:14px;padding:18px;height:max-content;position:sticky;top:140px}.filter h3{margin:0 0 15px}.filter label{display:block;font-size:14px;font-weight:700;margin:14px 0}.filter select{width:100%;padding:11px;border:1px solid var(--line);border-radius:9px;background:#fff}.check{display:flex!important;gap:8px;align-items:center}.products{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.card{background:#fff;border:1px solid var(--line);border-radius:15px;overflow:hidden;position:relative;transition:.2s}.card:hover{transform:translateY(-4px);box-shadow:0 15px 35px #1112}.photo{height:190px;background:linear-gradient(135deg,#edf1f5,#dfe5eb);display:flex;align-items:center;justify-content:center;position:relative}.photo .device{font-size:74px;filter:drop-shadow(0 12px 15px #0002)}.badge{position:absolute;left:12px;top:12px;padding:6px 9px;border-radius:7px;background:var(--green);font-size:10px;font-weight:950}.badge.used{background:#1f6feb;color:#fff}.card-body{padding:15px}.card h3{font-size:17px;margin:0 0 9px;line-height:1.25}.spec{font-size:12.5px;line-height:1.55;color:var(--muted);min-height:58px}.price{font-size:21px;font-weight:950;margin:12px 0}.buy{width:100%;padding:12px;border:0;border-radius:9px;background:var(--dark);color:#fff;font-weight:900;cursor:pointer}.empty{grid-column:1/-1;background:#fff;padding:40px;text-align:center;border:1px solid var(--line);border-radius:14px;color:var(--muted)}
+.benefits{background:var(--dark);color:#fff;border-radius:18px;padding:28px;display:grid;grid-template-columns:repeat(4,1fr);gap:18px}.benefit{padding:8px}.benefit b{color:var(--green);display:block;margin-bottom:7px}.benefit span{color:#c3c9d0;font-size:14px;line-height:1.5}
+footer{background:#080a0d;color:#bfc6ce;padding:45px 0 25px;margin-top:30px}.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1.3fr;gap:35px}.footer-logo{font-size:28px;font-weight:950;color:#fff}.footer-logo b{color:var(--green)}footer h4{color:#fff;margin:0 0 12px}footer a{display:block;margin:9px 0;color:#bfc6ce;font-size:14px}.copyright{border-top:1px solid #242a31;margin-top:30px;padding-top:18px;font-size:12px;color:#7e8792}
+.modal{display:none;position:fixed;inset:0;background:#0009;z-index:50;align-items:center;justify-content:center;padding:18px}.modal-box{background:#fff;border-radius:16px;padding:24px;width:min(480px,100%);position:relative}.close{position:absolute;right:18px;top:12px;font-size:28px;cursor:pointer}.modal-box input{width:100%;padding:13px;border:1px solid var(--line);border-radius:9px;margin:6px 0 10px}.modal-box .btn{width:100%;margin-top:8px}
+@media(max-width:950px){.products{grid-template-columns:repeat(2,1fr)}.layout{grid-template-columns:1fr}.filter{position:static}.hero .container{grid-template-columns:1fr}.hero-art{display:none}.benefits{grid-template-columns:repeat(2,1fr)}.footer-grid{grid-template-columns:1fr 1fr}.stats-box{grid-template-columns:repeat(2,1fr)}.stat:nth-child(2){border-right:0}.stat:nth-child(-n+2){border-bottom:1px solid var(--line)}}
+@media(max-width:650px){.top{display:none}.header{height:auto;padding:12px 0;flex-wrap:wrap}.logo{font-size:25px}.search{order:3;flex-basis:100%;max-width:none}.header-actions{display:none}.nav .container{gap:15px}.nav .cat{display:none}.hero .container{min-height:390px}.hero h1{letter-spacing:-1.5px}.hero p{font-size:15px}.stats{margin-top:-18px}.products{grid-template-columns:1fr}.benefits,.footer-grid{grid-template-columns:1fr}.section{padding:40px 0}.section-head{align-items:start;flex-direction:column}.stats-box{grid-template-columns:1fr 1fr}.stat{padding:16px 8px}.stat b{font-size:21px}}
+
+.logo{display:flex;align-items:center;gap:9px}
+.logo-mark,.footer-logo .logo-mark{
+  width:38px;height:38px;display:inline-flex;align-items:center;justify-content:center;
+  border:3px solid var(--green);border-radius:10px;color:var(--green);
+  font-size:21px;font-weight:1000;line-height:1;box-shadow:inset 0 0 0 2px #0b0d10;
+  background:linear-gradient(145deg,#171c22,#080a0d)
+}
+.footer-logo{display:flex;align-items:center;gap:9px}
+.footer-grid a[href^="tel:"],.footer-grid a[href^="mailto:"]{color:#fff;font-weight:700}
+
+/* NOUT BRO premium red-gold tech theme */
+:root{
+ --green:#e31b16; --bg:#f5f5f5; --dark:#090909; --dark2:#17110d;
+ --text:#111; --muted:#666; --line:#ddd; --white:#fff;
+ --gold:#d6a72c;
+}
+.logo{display:flex;align-items:center;height:58px;width:150px;overflow:hidden;border-radius:10px;background:#fff}
+.logo img{width:100%;height:100%;object-fit:cover;object-position:center}
+.footer-logo{display:flex;align-items:center;width:210px;height:82px;overflow:hidden;border-radius:10px;background:#fff}
+.footer-logo img{width:100%;height:100%;object-fit:cover;object-position:center}
+.search button,.primary,.nav .cat{background:linear-gradient(135deg,#b80f0b,#f0b52b);color:#fff}
+.hero{background:
+ radial-gradient(circle at 78% 25%,#6d1713 0,#21100e 25%,#090909 65%),
+ linear-gradient(135deg,#080808,#1a0d0b)}
+.hero h1 span,.eyebrow{color:#f0b52b}
+.badge{background:linear-gradient(135deg,#c91510,#f0b52b)}
+.badge.used{background:#171717;border:1px solid #f0b52b;color:#f0b52b}
+.buy{background:linear-gradient(135deg,#111,#4b0d0b);border:1px solid #b98a22}
+.benefits{background:linear-gradient(135deg,#080808,#2a0b09)}
+.benefit b{color:#f0b52b}
+.top{background:#050505}
+header{background:linear-gradient(180deg,#0b0b0b,#111)}
 </style>
 </head>
 <body>
-<div class="top"><span>📍 Jizzax, O‘zbekiston</span><span>🕘 Ish vaqti: 09:00 — 21:00</span><span>📞 +998 90 123 45 67</span></div>
+<div class="top"><div class="container"><span>📍 O‘zbekiston</span><span>🕘 Har kuni 09:00–21:00</span><span>💬 Telegram orqali buyurtma</span></div></div>
+
 <header>
-  <div class="logo">NOUT <span>BRO</span></div>
-  <div class="search"><input id="search" placeholder="Noutbuk qidirish..." oninput="render()"><button>⌕</button></div>
-  <div>♡ Sevimlilar</div><div>🛒 Savatcha</div>
+  <div class="container header">
+    <a class="logo" href="#home"><img src="noutbro-logo.jpeg" alt="NOUT BRO — Noutbuklar va kompyuterlar"></a>
+    <div class="search"><input id="search" type="search" placeholder="Noutbuk nomi, CPU, GPU yoki brend..." oninput="render()"><button onclick="render()">⌕</button></div>
+    <div class="header-actions"><a class="header-btn" href="#new">🛍 Noutbuklar</a><a class="header-btn" href="#contact">☎ Aloqa</a></div>
+  </div>
 </header>
-<nav><a class="cat">☰ KATEGORIYALAR</a><a href="#home">BOSH SAHIFA</a><a href="#new">YANGI NOUTBUKLAR</a><a href="#used">ISHLATILGAN NOUTBUKLAR</a><a href="#contact">ALOQA</a></nav>
+
+<nav class="nav"><div class="container">
+  <a class="cat" href="#new">☰ KATEGORIYALAR</a>
+  <a href="#home">BOSH SAHIFA</a>
+  <a href="#new">YANGI</a>
+  <a href="#used">ISHLATILGAN</a>
+  <a href="#why">NIMA UCHUN NOUT BRO?</a>
+  <a href="#contact">ALOQA</a>
+</div></nav>
 
 <section class="hero" id="home">
-  <div><h1>YANGI VA ISHLATILGAN<br><span>NOUTBUKLAR</span></h1><p>Sifatli noutbuklar — qulay narxlarda!<br>Kafolat, tekshirilgan holat va ishonchli xizmat.</p>
-  <a class="btn primary" href="#new">YANGI NOUTBUKLAR</a><a class="btn dark" href="#used">ISHLATILGAN NOUTBUKLAR</a></div>
-  <div class="hero-laptop">💻</div>
+  <div class="container">
+    <div>
+      <div class="eyebrow">NOUT BRO • PREMIUM TECH STORE</div>
+      <h1>YANGI VA ISHLATILGAN<br><span>NOUTBUKLAR</span></h1>
+      <p>Gaming, ish va o‘qish uchun noutbuklar. Qurilmalar haqida to‘liq ma’lumot, tekshirilgan holat va qulay narxlar.</p>
+      <div class="buttons"><a class="btn primary" href="#new">Noutbuklarni ko‘rish</a><a class="btn outline" href="#used">Ishlatilganlar</a></div>
+    </div>
+    <div class="hero-art"><div class="laptop"><div class="screen">NOUT BRO</div></div><div class="base"></div></div>
+  </div>
 </section>
 
-<div class="brands">
-  <div class="brand">ASUS<small>124 ta mahsulot</small></div><div class="brand">HP<small>98 ta mahsulot</small></div>
-  <div class="brand">Lenovo<small>86 ta mahsulot</small></div><div class="brand">Acer<small>64 ta mahsulot</small></div>
-  <div class="brand">Dell<small>58 ta mahsulot</small></div><div class="brand">MSI<small>47 ta mahsulot</small></div>
+<div class="stats container">
+  <div class="stats-box">
+    <div class="stat"><b>YANGI</b><span>Yangi noutbuklar</span></div>
+    <div class="stat"><b>USED</b><span>Tekshirilgan ishlatilganlar</span></div>
+    <div class="stat"><b>100%</b><span>Ma’lumot ochiq ko‘rsatiladi</span></div>
+    <div class="stat"><b>UZ</b><span>O‘zbekiston bo‘ylab</span></div>
+  </div>
 </div>
 
-<main class="wrap">
-<div class="section-title"><h2 id="new">Noutbuklar</h2><span id="count"></span></div>
-<div class="layout">
-<aside class="filter">
-<h3>FILTR</h3>
-<label><input type="checkbox" id="newFilter" onchange="render()"> Yangi</label>
-<label><input type="checkbox" id="usedFilter" onchange="render()"> Ishlatilgan</label>
-<label>Brend<select id="brand" onchange="render()"><option>Barchasi</option><option>ASUS</option><option>HP</option><option>Lenovo</option><option>Acer</option><option>Dell</option></select></label>
-<label>CPU<select id="cpu" onchange="render()"><option>Barchasi</option><option>Intel</option><option>AMD</option></select></label>
-</aside>
-<section><div class="products" id="products"></div></section>
-</div>
+<main class="container">
+<section class="section" id="new">
+  <div class="section-head"><div><h2>Noutbuklar</h2><p>O‘zingizga mos modelni qidirib toping.</p></div><strong id="count"></strong></div>
+  <div class="layout">
+    <aside class="filter">
+      <h3>FILTRLAR</h3>
+      <label class="check"><input type="checkbox" id="newFilter" onchange="render()"> Yangi</label>
+      <label class="check"><input type="checkbox" id="usedFilter" onchange="render()"> Ishlatilgan</label>
+      <label>Brend<select id="brand" onchange="render()"><option>Barchasi</option><option>ASUS</option><option>HP</option><option>Lenovo</option><option>Acer</option><option>Dell</option></select></label>
+      <label>Protsessor<select id="cpu" onchange="render()"><option>Barchasi</option><option>Intel</option><option>AMD</option></select></label>
+      <button class="btn" style="width:100%;margin-top:8px;background:#eef1f4" onclick="resetFilters()">Filtrlarni tozalash</button>
+    </aside>
+    <section><div class="products" id="products"></div></section>
+  </div>
+</section>
 
-<div class="section-title"><h2>Nega NOUT BRO?</h2></div>
-<div class="benefits"><div class="benefit"><strong>🛡 KAFOLAT</strong>Barcha noutbuklarga kafolat beriladi</div><div class="benefit"><strong>✓ TEKSHIRILGAN SIFAT</strong>Har bir qurilma tekshiruvdan o‘tadi</div><div class="benefit"><strong>🚚 YETKAZIB BERISH</strong>O‘zbekiston bo‘ylab yetkazib berish</div><div class="benefit"><strong>💳 QULAY TO‘LOV</strong>Naqd yoki karta orqali to‘lov</div></div>
+<section class="section" id="why">
+  <div class="section-head"><div><h2>Nega NOUT BRO?</h2><p>Sotib olishdan oldin kerakli ma’lumotni aniq ko‘ring.</p></div></div>
+  <div class="benefits">
+    <div class="benefit"><b>🛡 KAFOLAT</b><span>Kafolat shartlari har bir mahsulot bo‘yicha alohida ko‘rsatiladi.</span></div>
+    <div class="benefit"><b>✓ TEKSHIRILGAN</b><span>Ishlatilgan qurilmalar holati va texnik xususiyatlari tekshiriladi.</span></div>
+    <div class="benefit"><b>🚚 YETKAZIB BERISH</b><span>Yetkazib berish shartlarini buyurtma vaqtida kelishamiz.</span></div>
+    <div class="benefit"><b>💬 OSON BUYURTMA</b><span>Mahsulotni tanlang va Telegram orqali tez bog‘laning.</span></div>
+  </div>
+</section>
 </main>
 
-<footer id="contact"><div><div class="footer-logo">NOUT <span>BRO</span></div><p>Yangi va ishlatilgan noutbuklar sotuvchisi. Ishonchli, sifatli va qulay narxlar.</p></div><div><b>KATEGORIYALAR</b><a href="#new">Yangi noutbuklar</a><a href="#used">Ishlatilgan noutbuklar</a></div><div><b>MA’LUMOT</b><a href="#">Biz haqimizda</a><a href="#">Yetkazib berish</a><a href="#">Kafolat</a></div><div><b>ALOQA</b><a href="tel:+998901234567">+998 90 123 45 67</a><a href="https://t.me/nout_bro">Telegram: @nout_bro</a><span>📍 Jizzax, O‘zbekiston</span></div></footer>
+<footer id="contact">
+  <div class="container">
+    <div class="footer-grid">
+      <div><div class="footer-logo"><img src="noutbro-logo.jpeg" alt="NOUT BRO"></div><p>Yangi va ishlatilgan noutbuklar. Gaming, ish va o‘qish uchun modellar.</p></div>
+      <div><h4>KATEGORIYALAR</h4><a href="#new" onclick="showState('Yangi')">Yangi noutbuklar</a><a href="#used" onclick="showState('Ishlatilgan')">Ishlatilgan noutbuklar</a></div>
+      <div><h4>YORDAM</h4><a href="#why">Kafolat</a><a href="#contact">Yetkazib berish</a><a href="#contact">Aloqa</a></div>
+      <div><h4>ALOQA</h4><a href="https://t.me/nout_bro" target="_blank">Telegram: @nout_bro</a><a href="tel:+998902976666">☎ +998 90 297 66 66</a><a href="mailto:noutbro6666@gmail.com">✉ noutbro6666@gmail.com</a><span>📍 Jizzax shahar, 130100</span></div>
+    </div>
+    <div class="copyright">© 2026 NOUT BRO. Barcha huquqlar himoyalangan.</div>
+  </div>
+</footer>
 
-<div class="modal" id="modal"><div class="modal-box"><span class="close" onclick="closeModal()">×</span><h2>Buyurtma berish</h2><p id="modalText"></p><input id="name" placeholder="Ismingiz" style="width:100%;padding:12px;margin:6px 0"><input id="phone" placeholder="Telefon raqam" style="width:100%;padding:12px;margin:6px 0"><button class="btn primary" onclick="sendOrder()">Buyurtmani yuborish</button></div></div>
+<div class="modal" id="modal"><div class="modal-box">
+  <span class="close" onclick="closeModal()">×</span>
+  <h2>Buyurtma berish</h2><p id="modalText"></p>
+  <input id="name" placeholder="Ismingiz">
+  <input id="phone" placeholder="Telefon raqamingiz">
+  <button class="btn primary" onclick="sendOrder()">Telegram orqali buyurtma</button>
+</div></div>
 
 <script>
 const products=[
-{name:"ASUS TUF Gaming F15",brand:"ASUS",cpu:"Intel",state:"Yangi",spec:"i5-12500H / RTX 3050 / 16GB RAM / 512GB SSD / 15.6” FHD 144Hz",price:8990000,icon:"🎮"},
-{name:"HP Victus 15",brand:"HP",cpu:"AMD",state:"Yangi",spec:"Ryzen 5 7535HS / RTX 2050 / 16GB RAM / 512GB SSD / 144Hz",price:7490000,icon:"💻"},
-{name:"Lenovo Legion 5",brand:"Lenovo",cpu:"AMD",state:"Ishlatilgan",spec:"Ryzen 5 5600H / RTX 3060 / 16GB RAM / 512GB SSD / 165Hz",price:8200000,icon:"🖥️"},
-{name:"Dell Latitude 7490",brand:"Dell",cpu:"Intel",state:"Ishlatilgan",spec:"i5-8350U / Intel UHD 620 / 8GB RAM / 256GB SSD / 14”",price:3200000,icon:"💼"},
-{name:"ASUS ROG Strix G16",brand:"ASUS",cpu:"Intel",state:"Yangi",spec:"i7-13650HX / RTX 4060 / 16GB RAM / 1TB SSD / 165Hz",price:15990000,icon:"🎮"},
-{name:"Acer Aspire 5",brand:"Acer",cpu:"Intel",state:"Yangi",spec:"i5-1235U / Iris Xe / 8GB RAM / 512GB SSD",price:6290000,icon:"💻"},
-{name:"HP EliteBook 840 G6",brand:"HP",cpu:"Intel",state:"Ishlatilgan",spec:"i5-8265U / Intel UHD 620 / 8GB RAM / 256GB SSD / 14”",price:2990000,icon:"💼"},
-{name:"Lenovo ThinkPad T480",brand:"Lenovo",cpu:"Intel",state:"Ishlatilgan",spec:"i5-8350U / Intel UHD 620 / 8GB RAM / 256GB SSD",price:3100000,icon:"💼"}];
-let selected="";
+{name:"ASUS TUF Gaming F15",brand:"ASUS",cpu:"Intel",state:"Yangi",spec:"i5-12500H • RTX 3050 • 16GB RAM • 512GB SSD • 15.6” FHD 144Hz",price:8990000,icon:"🎮"},
+{name:"HP Victus 15",brand:"HP",cpu:"AMD",state:"Yangi",spec:"Ryzen 5 7535HS • RTX 2050 • 16GB RAM • 512GB SSD • 144Hz",price:7490000,icon:"💻"},
+{name:"Lenovo Legion 5",brand:"Lenovo",cpu:"AMD",state:"Ishlatilgan",spec:"Ryzen 5 5600H • RTX 3060 • 16GB RAM • 512GB SSD • 165Hz",price:8200000,icon:"🎮"},
+{name:"Dell Latitude 7490",brand:"Dell",cpu:"Intel",state:"Ishlatilgan",spec:"i5-8350U • Intel UHD 620 • 8GB RAM • 256GB SSD • 14”",price:3200000,icon:"💼"},
+{name:"ASUS ROG Strix G16",brand:"ASUS",cpu:"Intel",state:"Yangi",spec:"i7-13650HX • RTX 4060 • 16GB RAM • 1TB SSD • 165Hz",price:15990000,icon:"🎮"},
+{name:"Acer Aspire 5",brand:"Acer",cpu:"Intel",state:"Yangi",spec:"i5-1235U • Iris Xe • 8GB RAM • 512GB SSD",price:6290000,icon:"💻"},
+{name:"HP EliteBook 840 G6",brand:"HP",cpu:"Intel",state:"Ishlatilgan",spec:"i5-8265U • Intel UHD 620 • 8GB RAM • 256GB SSD • 14”",price:2990000,icon:"💼"},
+{name:"Lenovo ThinkPad T480",brand:"Lenovo",cpu:"Intel",state:"Ishlatilgan",spec:"i5-8350U • Intel UHD 620 • 8GB RAM • 256GB SSD",price:3100000,icon:"💼"}
+];
+
 function money(n){return n.toLocaleString("uz-UZ")+" so‘m"}
 function render(){
- const q=document.getElementById("search").value.toLowerCase(), b=document.getElementById("brand").value, c=document.getElementById("cpu").value;
- const nf=document.getElementById("newFilter").checked, uf=document.getElementById("usedFilter").checked;
- let arr=products.filter(p=>(!q||p.name.toLowerCase().includes(q)||p.spec.toLowerCase().includes(q))&&(b==="Barchasi"||p.brand===b)&&(c==="Barchasi"||p.cpu===c)&&(!nf&&!uf||nf&&p.state==="Yangi"||uf&&p.state==="Ishlatilgan"));
+ const q=document.getElementById("search").value.toLowerCase().trim();
+ const b=document.getElementById("brand").value,c=document.getElementById("cpu").value;
+ const nf=document.getElementById("newFilter").checked,uf=document.getElementById("usedFilter").checked;
+ const arr=products.filter(p=>{
+   const text=(p.name+" "+p.spec+" "+p.brand+" "+p.cpu).toLowerCase();
+   const stateOk=(!nf&&!uf)||(nf&&p.state==="Yangi")||(uf&&p.state==="Ishlatilgan");
+   return (!q||text.includes(q))&&(b==="Barchasi"||p.brand===b)&&(c==="Barchasi"||p.cpu===c)&&stateOk;
+ });
  document.getElementById("count").textContent=arr.length+" ta mahsulot";
- document.getElementById("products").innerHTML=arr.map(p=>`<article class="card"><span class="badge ${p.state==="Ishlatilgan"?"used":""}">${p.state.toUpperCase()}</span><img src="https://dummyimage.com/500x350/f0f0f0/111&text=${encodeURIComponent(p.icon+" "+p.brand)}"><h3>${p.name}</h3><div class="spec">${p.spec}</div><div class="price">${money(p.price)}</div><button class="buy" onclick='openModal(${JSON.stringify(p.name)})'>BATAFSIL / BUYURTMA</button></article>`).join("");
+ document.getElementById("products").innerHTML=arr.length?arr.map(p=>`
+ <article class="card">
+   <div class="photo"><span class="badge ${p.state==="Ishlatilgan"?"used":""}">${p.state.toUpperCase()}</span><div class="device">${p.icon}</div></div>
+   <div class="card-body"><h3>${p.name}</h3><div class="spec">${p.spec}</div><div class="price">${money(p.price)}</div>
+   <button class="buy" onclick='openModal(${JSON.stringify(p.name)})'>BATAFSIL / BUYURTMA</button></div>
+ </article>`).join(""):`<div class="empty">🔎 Mahsulot topilmadi.<br><br>Qidiruv yoki filtrlarni o‘zgartirib ko‘ring.</div>`;
 }
-function openModal(n){selected=n;document.getElementById("modalText").textContent=n;document.getElementById("modal").style.display="flex"}
+function resetFilters(){document.getElementById("search").value="";document.getElementById("brand").value="Barchasi";document.getElementById("cpu").value="Barchasi";document.getElementById("newFilter").checked=false;document.getElementById("usedFilter").checked=false;render()}
+function showState(state){document.getElementById("newFilter").checked=state==="Yangi";document.getElementById("usedFilter").checked=state==="Ishlatilgan";render()}
+function openModal(n){document.getElementById("modalText").textContent=n;document.getElementById("modal").style.display="flex";window.orderProduct=n}
 function closeModal(){document.getElementById("modal").style.display="none"}
-function sendOrder(){let n=document.getElementById("name").value,p=document.getElementById("phone").value;if(!n||!p)return alert("Ism va telefon raqamingizni kiriting.");alert("Rahmat! Buyurtmangiz qabul qilindi. Telegram yoki telefon orqali bog‘lanamiz.");closeModal()}
+function sendOrder(){
+ const n=document.getElementById("name").value.trim(),p=document.getElementById("phone").value.trim();
+ if(!n||!p){alert("Ism va telefon raqamingizni kiriting.");return}
+ const text=encodeURIComponent("Salom, NOUT BRO!%0A%0A"+window.orderProduct+"%0A%0AIsm: "+n+"%0ATelefon: "+p);
+ window.open("https://t.me/nout_bro?text="+text,"_blank");
+ closeModal();
+}
 render();
 </script>
-</body></html>
+</body>
+</html>
